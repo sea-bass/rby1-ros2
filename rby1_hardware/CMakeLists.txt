@@ -22,7 +22,7 @@ include_directories(/
 )
 
 link_directories(
-  ${RBY1_SDK_PATH}build/src)
+  ${RBY1_SDK_PATH}/build/src)
 
 add_library(${PROJECT_NAME} SHARED
   src/rby1_hardware_interface.cpp
