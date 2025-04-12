@@ -27,36 +27,6 @@ cmake --preset conan-release
 cmake --build --preset conan-release
 ```
 
-### Install ROS 2 package dependencies
-```shell
-sudo apt install -y \
-ros-humble-ament-cmake \
-ros-humble-xacro \
-ros-humble-rviz2 \
-ros-humble-robot-state-publisher \
-ros-humble-joint-state-publisher \
-ros-humble-urdf \
-ros-humble-urdf-launch \
-ros-humble-tf2-ros \
-ros-humble-tf2-tools \
-ros-humble-ros2-control \
-ros-humble-ros2-controllers \
-ros-humble-controller-manager \
-ros-humble-hardware-interface \
-ros-humble-transmission-interface \
-ros-humble-moveit \
-ros-humble-moveit-setup-assistant \
-ros-humble-moveit-ros-planning \
-ros-humble-moveit-ros-planning-interface \
-ros-humble-moveit-ros-move-group \
-ros-humble-moveit-visual-tools \
-ros-humble-rosidl-default-generators \
-ros-humble-action-msgs \
-ros-humble-rclcpp-action \
-ros-humble-rqt \
-ros-humble-rqt-controller-manager
-```
-
 ### Set up environment
 ```shell
 export CMAKE_PREFIX_PATH=/opt/ros/humble:$CMAKE_PREFIX_PATH
@@ -72,12 +42,19 @@ mkdir -p ~/rby1_ros2_ws/src
 ```
 
 #### Clone repo and build `rby1_ros2` packages:
+
+One time set up to clone the repo and install ROS 2 dependencies.
+
 ```bash
 cd ~/rby1_ros2_ws
+git clone https://github.com/RainbowRobotics/rby1-ros2.git src
+rosdep install --from-paths src -y --ignore-src
+```
 
-git clone https://github.com/dongridong/rby1-ros2.git src
+Build and source the workspace.
 
-colcon build --symlink-install --cmake-args
+```bash
+colcon build --symlink-install
 source install/setup.bash
 ```
 
